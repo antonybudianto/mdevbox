@@ -1,6 +1,4 @@
-# minilog
-
-Simple local-only logging platform
+# mdevbox
 
 ## Get started
 
@@ -18,11 +16,13 @@ Simple local-only logging platform
    npm start
    ```
 5. Put script tag on your website (must be first among all scripts)
+
    ```html
    <script src="http://localhost:8000/public/client.js"></script>
    ```
+
    > :warning: This script will override console methods, **only** include this on **development**!
-   
+
 6. Make sure you have `console.{log,warn,error}` on your website for testing
 7. Check the logs on:
    ```
