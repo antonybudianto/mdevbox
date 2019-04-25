@@ -19,6 +19,12 @@
 
    ```html
    <script src="http://localhost:8000/public/client.js"></script>
+   <script>
+    new MiniLogClient({
+      baseUrl: "http://localhost:8000",
+      logFetch: true
+    });
+   </script>
    ```
 
    > :warning: This script will override console methods, **only** include this on **development**!
@@ -26,7 +32,7 @@
 6. Make sure you have `console.{log,warn,error}` on your website for testing
 7. Check the logs on:
    ```
-   http://localhost:8000/web
+   http://localhost:8000/dashboard/log
    ```
 
 ## Tips
