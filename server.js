@@ -20,7 +20,10 @@ io.on('connection', function(socket) {
     console.log('user disconnected');
   });
 });
-
+app.get('/api/v1/socket/reload', (req, res) => {
+  io.emit('browser:reload');
+  res.status(200).send();
+});
 app.get('/ping', (req, res) => {
   res.send('pong');
 });

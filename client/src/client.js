@@ -1,10 +1,10 @@
 /**
  * client.js
  */
-const io = require('socket.io-client');
+const socketHandler = require('./socket');
 
 function MiniLogClient(options) {
-  var socket = io();
+  socketHandler();
 
   var _log = console.log;
   var _error = console.error;
