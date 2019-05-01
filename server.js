@@ -7,8 +7,19 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || 'localhost';
+
+io.on('connection', function(socket) {
+  console.log('an user connected');
+
+  socket.on('disconnect', function() {
+    console.log('user disconnected');
+  });
+});
 
 app.get('/ping', (req, res) => {
   res.send('pong');
@@ -20,7 +31,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/web/index.html'));
 });
 
-app.listen(PORT, HOST, () => {
+http.listen(PORT, HOST, () => {
   console.log(`
     ========== Minilog ==========
     Listening on port: ${PORT}
