@@ -7,6 +7,11 @@ function socketMiddleware(io) {
     io.emit('browser:reload');
     res.status(200).send();
   });
+  app.post('/set-cookie', (req, res) => {
+    const { cookie } = req.body;
+    io.emit('browser:set-cookie', cookie);
+    res.status(201).send();
+  });
   app.get('/clients', (req, res) => {
     const con = io.sockets.connected;
     const values = Object.values(con);
