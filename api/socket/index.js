@@ -10,8 +10,10 @@ function socketMiddleware(io) {
   app.get('/clients', (req, res) => {
     const con = io.sockets.connected;
     const values = Object.values(con);
-    const map = values.map(v => {
+    const keys = Object.keys(con);
+    const map = values.map((v, i) => {
       return {
+        id: keys[i],
         ip: v.handshake.headers.host,
         ua: v.handshake.headers['user-agent'],
         issued: v.handshake.issued
