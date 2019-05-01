@@ -1,4 +1,5 @@
 node_modules
 .DS_Store
 web/dist
+public/client.min.js
 .env
