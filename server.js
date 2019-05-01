@@ -14,7 +14,7 @@ app.get('/ping', (req, res) => {
   res.send('pong');
 });
 app.use('/api/v1/logs', logsRouting);
-app.use('/public', express.static('public'));
+app.use('/public', express.static('client/dist'));
 app.use('/web/dist', express.static('web/dist'));
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/web/index.html'));
