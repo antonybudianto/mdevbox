@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const logsRouting = require('./api/logs');
+const socketRouting = require('./api/socket');
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,13 +21,11 @@ io.on('connection', function(socket) {
     console.log('user disconnected');
   });
 });
-app.get('/api/v1/socket/reload', (req, res) => {
-  io.emit('browser:reload');
-  res.status(200).send();
-});
+
 app.get('/ping', (req, res) => {
   res.send('pong');
 });
+app.use('/api/v1/socket', socketRouting(io));
 app.use('/api/v1/logs', logsRouting);
 app.use('/public', express.static('client/dist'));
 app.use('/web/dist', express.static('web/dist'));
