@@ -4,7 +4,7 @@
 const socketHandler = require('./socket');
 
 function MiniLogClient(options) {
-  socketHandler();
+  socketHandler(options);
 
   var _log = console.log;
   var _error = console.error;

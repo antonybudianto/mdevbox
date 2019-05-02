@@ -1,7 +1,7 @@
 const io = require('socket.io-client');
-var socket = io();
 
-function socketHandler() {
+function socketHandler(options) {
+  var socket = io(options.baseUrl);
   socket.on('browser:reload', () => {
     window.location.reload();
   });
