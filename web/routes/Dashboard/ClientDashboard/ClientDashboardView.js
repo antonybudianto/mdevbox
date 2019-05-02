@@ -60,6 +60,27 @@ class ClientDashboardView extends PureComponent {
     }
   };
 
+  handleRunEval = () => {
+    const cmd = prompt('Please enter eval value');
+    if (cmd) {
+      fetch('/api/v1/socket/run-eval', {
+        method: 'POST',
+        body: JSON.stringify({ cmd }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('Error run eval');
+          }
+        })
+        .then(() => {
+          alert('All clients ran eval successfully');
+        });
+    }
+  };
+
   render() {
     return (
       <div className={AppStyle}>
@@ -68,8 +89,11 @@ class ClientDashboardView extends PureComponent {
           <a href="/dashboard">Home</a> > Client
         </div>
         <div style={{ marginBottom: '20px', float: 'right' }}>
+          <button className={ButtonStyle} onClick={this.handleRunEval}>
+            Run eval all
+          </button>
           <button className={ButtonStyle} onClick={this.handleSetCookie}>
-            Set cookie to all
+            Set cookie all
           </button>
           <button className={ButtonStyle} onClick={this.handleReloadAll}>
             Reload all
