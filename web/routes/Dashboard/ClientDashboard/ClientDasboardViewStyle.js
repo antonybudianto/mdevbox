@@ -4,6 +4,7 @@ export const ButtonStyle = css`
   border: 1px solid gray;
   background-color: lightskyblue;
   padding: 8px;
+  margin-left: 10px;
 
   &:hover {
     background-color: lightblue;

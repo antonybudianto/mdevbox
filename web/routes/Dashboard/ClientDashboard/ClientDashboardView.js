@@ -39,8 +39,23 @@ class ClientDashboardView extends PureComponent {
   handleReloadAll = () => {
     const yes = confirm('All clients will be reloaded, are you sure?');
     if (yes) {
-      fetch('/api/v1/socket/reload', { credentials: 'include' }).then(() => {
+      fetch('/api/v1/socket/reload').then(() => {
         alert('All clients reloaded successfully');
+      });
+    }
+  };
+
+  handleSetCookie = () => {
+    const cookie = prompt('Please enter the cookie value');
+    if (cookie !== null) {
+      fetch('/api/v1/socket/set-cookie', {
+        method: 'POST',
+        body: JSON.stringify({ cookie }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(() => {
+        alert('All clients cookies have been set successfully');
       });
     }
   };
@@ -53,6 +68,9 @@ class ClientDashboardView extends PureComponent {
           <a href="/dashboard">Home</a> > Client
         </div>
         <div style={{ marginBottom: '20px', float: 'right' }}>
+          <button className={ButtonStyle} onClick={this.handleSetCookie}>
+            Set cookie to all
+          </button>
           <button className={ButtonStyle} onClick={this.handleReloadAll}>
             Reload all
           </button>
