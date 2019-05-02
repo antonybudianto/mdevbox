@@ -24,7 +24,7 @@ function socketMiddleware(io) {
     const map = values.map((v, i) => {
       return {
         id: keys[i],
-        ip: v.handshake.headers.host,
+        ip: v.handshake.address,
         ua: v.handshake.headers['user-agent'],
         issued: v.handshake.issued
       };
