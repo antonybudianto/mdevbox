@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import UAParser from 'ua-parser-js';
-import cn from 'classnames';
 import {
   TableStyle,
   ButtonStyle,
   AppStyle,
-  FetchDataStyle
+  ConStatusStyle,
+  vAlignMiddle
 } from './ClientDasboardViewStyle';
 
 class ClientDashboardView extends PureComponent {
@@ -113,7 +113,12 @@ class ClientDashboardView extends PureComponent {
               const ua = new UAParser(l.ua).getResult();
               return (
                 <tr key={i}>
-                  <td>{new Date(l.issued).toLocaleString()}</td>
+                  <td>
+                    <div className={ConStatusStyle + ' ' + vAlignMiddle} />{' '}
+                    <span className={vAlignMiddle}>
+                      {new Date(l.issued).toLocaleString()}
+                    </span>
+                  </td>
                   <td>{l.id}</td>
                   <td>{l.ip}</td>
                   <td title={ua.ua}>

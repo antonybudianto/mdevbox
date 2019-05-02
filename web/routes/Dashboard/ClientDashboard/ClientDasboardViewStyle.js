@@ -1,4 +1,27 @@
-import { css } from 'emotion';
+import { css, keyframes } from 'emotion';
+
+const glow = keyframes`
+  0% {
+    background-color: lightgreen;
+  }
+
+  100% {
+    background-color: green;
+  }
+`;
+
+export const ConStatusStyle = css`
+  border-radius: 50%;
+  background-color: lightgreen;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  animation: ${glow} 1s alternate infinite;
+`;
+
+export const vAlignMiddle = css`
+  vertical-align: middle;
+`;
 
 export const ButtonStyle = css`
   border: 1px solid gray;
