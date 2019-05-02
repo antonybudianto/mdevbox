@@ -47,7 +47,7 @@ class ClientDashboardView extends PureComponent {
 
   handleSetCookie = () => {
     const cookie = prompt('Please enter the cookie value');
-    if (cookie !== null) {
+    if (cookie) {
       fetch('/api/v1/socket/set-cookie', {
         method: 'POST',
         body: JSON.stringify({ cookie }),
