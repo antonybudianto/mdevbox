@@ -24,8 +24,9 @@ function socketMiddleware(io) {
         issued: v.handshake.issued
       };
     });
-    console.log(map);
-    res.status(200).send();
+    res.json({
+      clients: map
+    });
   });
   return app;
 }

@@ -11,6 +11,10 @@ const menus = [
     href: '/dashboard/log'
   },
   {
+    label: 'Client',
+    href: '/dashboard/client'
+  },
+  {
     label: 'Logout',
     href: '/logout'
   }
