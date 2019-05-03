@@ -19,6 +19,12 @@
 
    ```html
    <script src="http://localhost:8000/public/client.min.js"></script>
+   <script>
+    new MiniLogClient({
+      baseUrl: "http://localhost:8000",
+      logFetch: true
+    });
+   </script>
    ```
 
    > :warning: This script will override console methods, **only** include this on **development**!
