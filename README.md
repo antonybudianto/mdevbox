@@ -18,7 +18,7 @@
 5. Put script tag on your website (must be first among all scripts)
 
    ```html
-   <script src="http://localhost:8000/public/client.js"></script>
+   <script src="http://localhost:8000/public/client.min.js"></script>
    <script>
     new MiniLogClient({
       baseUrl: "http://localhost:8000",
@@ -32,7 +32,7 @@
 6. Make sure you have `console.{log,warn,error}` on your website for testing
 7. Check the logs on:
    ```
-   http://localhost:8000/dashboard/log
+   http://localhost:8000/dashboard
    ```
 
 ## Tips
