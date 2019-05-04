@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import UAParser from 'ua-parser-js';
 
-import { ContainerStyle, ContentStyle } from '../../CoreStyle';
+import { ContainerStyle, ContentStyle, TriColStyle } from '../../CoreStyle';
 import ModernizrContainer from './ModernizrContainer';
 
 class ClientView extends PureComponent {
@@ -47,49 +47,48 @@ class ClientView extends PureComponent {
           <div className={ContentStyle}>
             <div>
               <h2>Info</h2>
-              <div>
-                <strong>IP:</strong> {client.ip}
-              </div>
-              <div>
-                <strong>Issued:</strong>{' '}
-                {new Date(client.issued).toLocaleString()}
-              </div>
-              <div>
-                <strong>Cookie:</strong> {client.cookie}
-              </div>
-              <div>
+              <div className={TriColStyle}>
                 <div>
-                  <strong>UserAgent:</strong>
+                  <strong>IP:</strong> {client.ip}
                 </div>
-                <div style={{ marginLeft: '10px', marginTop: '5px' }}>
-                  {ua.browser.name && (
-                    <div>
-                      <strong>Browser:</strong> {ua.browser.name}/
-                      {ua.browser.version}
-                    </div>
-                  )}
-                  {ua.engine.name && (
-                    <div>
-                      <strong>Engine:</strong> {ua.engine.name}/
-                      {ua.engine.version}
-                    </div>
-                  )}
-                  {ua.os.name && (
-                    <div>
-                      <strong>OS:</strong> {ua.os.name}/{ua.os.version}
-                    </div>
-                  )}
-                  {ua.device.model && (
-                    <div>
-                      <strong>Device:</strong> {ua.device.model}/
-                      {ua.device.type}/{ua.device.vendor}
-                    </div>
-                  )}
-                  {ua.cpu.architecture && (
-                    <div>
-                      <strong>CPU:</strong> {ua.cpu.architecture}
-                    </div>
-                  )}
+                <div>
+                  <strong>Issued:</strong>{' '}
+                  {new Date(client.issued).toLocaleString()}
+                </div>
+                <div>
+                  <strong>Cookie:</strong> {client.cookie}
+                </div>
+                <div>
+                  <div>
+                    {ua.browser.name && (
+                      <div>
+                        <strong>Browser:</strong> {ua.browser.name}/
+                        {ua.browser.version}
+                      </div>
+                    )}
+                    {ua.engine.name && (
+                      <div>
+                        <strong>Engine:</strong> {ua.engine.name}/
+                        {ua.engine.version}
+                      </div>
+                    )}
+                    {ua.os.name && (
+                      <div>
+                        <strong>OS:</strong> {ua.os.name}/{ua.os.version}
+                      </div>
+                    )}
+                    {ua.device.model && (
+                      <div>
+                        <strong>Device:</strong> {ua.device.model}/
+                        {ua.device.type}/{ua.device.vendor}
+                      </div>
+                    )}
+                    {ua.cpu.architecture && (
+                      <div>
+                        <strong>CPU:</strong> {ua.cpu.architecture}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -2,9 +2,7 @@ import { css } from 'emotion';
 
 export const ModernizrStyle = css`
   ul {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
+    column-count: 4;
   }
   li {
     &.green {
@@ -12,6 +10,10 @@ export const ModernizrStyle = css`
     }
     &.orange {
       color: darkred;
+    }
+
+    ul {
+      column-count: 2;
     }
   }
 `;
