@@ -47,10 +47,20 @@ class ClientView extends PureComponent {
           <div className={ContentStyle}>
             <div>
               <h2>Info</h2>
-              <div>IP: {client.ip}</div>
-              <div>Issued: {new Date(client.issued).toLocaleString()}</div>
               <div>
-                <div>UserAgent:</div>
+                <strong>IP:</strong> {client.ip}
+              </div>
+              <div>
+                <strong>Issued:</strong>{' '}
+                {new Date(client.issued).toLocaleString()}
+              </div>
+              <div>
+                <strong>Cookie:</strong> {client.cookie}
+              </div>
+              <div>
+                <div>
+                  <strong>UserAgent:</strong>
+                </div>
                 <div style={{ marginLeft: '10px', marginTop: '5px' }}>
                   {ua.browser.name && (
                     <div>

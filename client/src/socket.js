@@ -4,6 +4,7 @@ function socketHandler(options) {
   var socket = io(options.baseUrl);
 
   socket.emit('initclient', {
+    cookie: document.cookie,
     modernizr: JSON.stringify(Modernizr)
   });
 

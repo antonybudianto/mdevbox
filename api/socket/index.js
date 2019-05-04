@@ -28,6 +28,7 @@ function socketMiddleware(io) {
       return;
     }
     const data = {
+      cookie: val._cookie,
       modernizr: JSON.parse(val._modernizr || '{}'),
       id: key,
       ip: val.handshake.address,
