@@ -53,6 +53,10 @@ export const TableStyle = css`
       background-color: darkred;
     }
 
+    &.info {
+      background-color: darkslateblue;
+    }
+
     &.warn {
       background-color: orange;
     }

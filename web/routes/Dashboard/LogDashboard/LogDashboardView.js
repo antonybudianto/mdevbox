@@ -87,9 +87,7 @@ class LogDashboardView extends PureComponent {
                   <td>
                     <div
                       className={cn('label', {
-                        error: l.type === 'error',
-                        warn: l.type === 'warn',
-                        fetch: l.type === 'fetch'
+                        [l.type]: true
                       })}
                     >
                       {l.type}

@@ -6,6 +6,10 @@ export const ContainerStyle = css`
   font-family: 'Arial';
 `;
 
+export const ContentStyle = css`
+  margin-top: 20px;
+`;
+
 export const ButtonLinkStyle = css`
   padding: 10px;
   border: 1px solid gray;

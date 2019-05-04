@@ -9,6 +9,8 @@ function MiniLogClient(options) {
   var _log = console.log;
   var _error = console.error;
   var _warning = console.warn;
+  var _info = console.info;
+
   var logFetch = options.logFetch || false;
 
   if (!self.fetch) {
@@ -107,6 +109,11 @@ function MiniLogClient(options) {
   console.warn = function() {
     postLog('warn', argToArr(arguments));
     _warning.apply(console, arguments);
+  };
+
+  console.info = function() {
+    postLog('info', argToArr(arguments));
+    _info.apply(console, arguments);
   };
 
   if (logFetch) {
