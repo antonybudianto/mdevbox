@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ModernizrStyle } from './ModernizrStyle';
 
 const renderInputTypes = (k, v) => {

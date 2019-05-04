@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('initclient', data => {
-    socket['_modernizr'] = data;
+    socket['_modernizr'] = data.modernizr;
   });
 });
 
