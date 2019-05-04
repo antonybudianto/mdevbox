@@ -61,6 +61,11 @@
     }
     return Modernizr;
   }
+  function cssToDOM(A) {
+    return A.replace(/([a-z])-([a-z])/g, function(A, e, t) {
+      return e + t.toUpperCase();
+    }).replace(/^-/, '');
+  }
   function createElement() {
     return 'function' != typeof document.createElement
       ? document.createElement(arguments[0])
@@ -71,11 +76,6 @@
           arguments[0]
         )
       : document.createElement.apply(document, arguments);
-  }
-  function cssToDOM(A) {
-    return A.replace(/([a-z])-([a-z])/g, function(A, e, t) {
-      return e + t.toUpperCase();
-    }).replace(/^-/, '');
   }
   function domToCSS(A) {
     return A.replace(/([A-Z])/g, function(A, e) {
@@ -2346,6 +2346,16 @@
       )
     );
   }),
+    Modernizr.addTest('smil', function() {
+      return (
+        !!document.createElementNS &&
+        /SVGAnimate/.test(
+          toStringFn.call(
+            document.createElementNS('http://www.w3.org/2000/svg', 'animate')
+          )
+        )
+      );
+    }),
     Modernizr.addTest('svgforeignobject', function() {
       return (
         !!document.createElementNS &&
@@ -2355,16 +2365,6 @@
               'http://www.w3.org/2000/svg',
               'foreignObject'
             )
-          )
-        )
-      );
-    }),
-    Modernizr.addTest('smil', function() {
-      return (
-        !!document.createElementNS &&
-        /SVGAnimate/.test(
-          toStringFn.call(
-            document.createElementNS('http://www.w3.org/2000/svg', 'animate')
           )
         )
       );

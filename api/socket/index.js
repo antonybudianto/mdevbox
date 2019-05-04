@@ -22,13 +22,13 @@ function socketMiddleware(io) {
     const con = io.sockets.connected;
     const val = con[key];
     if (!val) {
-      res.status(400).json({
+      res.status(404).json({
         message: 'Socket ID not found'
       });
       return;
     }
     const data = {
-      modernizr: JSON.parse(val._modernizr),
+      modernizr: JSON.parse(val._modernizr || '{}'),
       id: key,
       ip: val.handshake.address,
       ua: val.handshake.headers['user-agent'],
