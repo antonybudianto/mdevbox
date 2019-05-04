@@ -2,6 +2,9 @@ const io = require('socket.io-client');
 
 function socketHandler(options) {
   var socket = io(options.baseUrl);
+
+  socket.emit('initclient', JSON.stringify(Modernizr));
+
   socket.on('browser:reload', () => {
     window.location.reload();
   });

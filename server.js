@@ -20,6 +20,10 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });
+
+  socket.on('initclient', data => {
+    socket['_modernizr'] = data;
+  });
 });
 
 app.get('/ping', (req, res) => {
