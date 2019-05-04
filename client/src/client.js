@@ -1,6 +1,4 @@
-/**
- * client.js
- */
+require('./modernizr');
 const socketHandler = require('./socket');
 
 function MiniLogClient(options) {
