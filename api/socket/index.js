@@ -17,6 +17,52 @@ function socketMiddleware(io) {
     io.emit('browser:set-cookie', cookie);
     res.status(201).send();
   });
+  app.post('/client/:id/dom', (req, res) => {
+    const key = req.params.id;
+    const con = io.sockets.connected;
+    const val = con[key];
+    if (!val) {
+      res.status(404).json({
+        message: 'Socket ID not found'
+      });
+      return;
+    }
+    val.emit('browser:dom');
+    res.status(201).send();
+  });
+  app.get('/client/:id/dom', (req, res) => {
+    const key = req.params.id;
+    const con = io.sockets.connected;
+    const val = con[key];
+    if (!val) {
+      res.status(404).json({
+        message: 'Socket ID not found'
+      });
+      return;
+    }
+    res.json({ dom: val._dom });
+  });
+  app.get('/client/:id', (req, res) => {
+    const key = req.params.id;
+    const con = io.sockets.connected;
+    const val = con[key];
+    if (!val) {
+      res.status(404).json({
+        message: 'Socket ID not found'
+      });
+      return;
+    }
+    const data = {
+      cookie: val._cookie,
+      dom: val._dom,
+      modernizr: JSON.parse(val._modernizr || '{}'),
+      id: key,
+      ip: val.handshake.address,
+      ua: val.handshake.headers['user-agent'],
+      issued: val.handshake.issued
+    };
+    res.json(data);
+  });
   app.get('/clients', (req, res) => {
     const con = io.sockets.connected;
     const values = Object.values(con);

@@ -20,6 +20,16 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });
+
+  socket.on('initclient', data => {
+    socket['_modernizr'] = data.modernizr;
+    socket['_cookie'] = data.cookie;
+    socket['_dom'] = data.dom;
+  });
+
+  socket.on('initdom', dom => {
+    socket['_dom'] = dom;
+  });
 });
 
 app.get('/ping', (req, res) => {

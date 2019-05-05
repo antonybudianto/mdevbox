@@ -2,12 +2,12 @@ import { DashboardRoute } from './Dashboard';
 import { NotFoundRoute } from './NotFound';
 import { LogDashboardRoute } from './Dashboard/LogDashboard';
 import { HomeRoute } from './Home';
-import { ClientDashboardRoute } from './Dashboard/ClientDashboard';
+import { ClientDashboardRoutes } from './Dashboard/ClientDashboard';
 
 export const routes = [
   HomeRoute,
   DashboardRoute,
   LogDashboardRoute,
-  ClientDashboardRoute,
+  ...ClientDashboardRoutes,
   NotFoundRoute
 ];

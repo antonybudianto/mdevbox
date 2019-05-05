@@ -71,6 +71,7 @@ class LogDashboardView extends PureComponent {
             <tr>
               <th style={{ width: '110px' }}>Date</th>
               <th style={{ width: '100px' }}>Type</th>
+              <th>IP</th>
               <th>Origin</th>
               <th>Location</th>
               <th>UserAgent</th>
@@ -86,14 +87,13 @@ class LogDashboardView extends PureComponent {
                   <td>
                     <div
                       className={cn('label', {
-                        error: l.type === 'error',
-                        warn: l.type === 'warn',
-                        fetch: l.type === 'fetch'
+                        [l.type]: true
                       })}
                     >
                       {l.type}
                     </div>
                   </td>
+                  <td>{l.ip}</td>
                   <td>{l.origin}</td>
                   <td>{l.href}</td>
                   <td title={ua.ua}>

@@ -119,7 +119,9 @@ class ClientDashboardView extends PureComponent {
                       {new Date(l.issued).toLocaleString()}
                     </span>
                   </td>
-                  <td>{l.id}</td>
+                  <td>
+                    <a href={'/dashboard/client/' + l.id}>{l.id}</a>
+                  </td>
                   <td>{l.ip}</td>
                   <td title={ua.ua}>
                     {ua.browser.name && (
