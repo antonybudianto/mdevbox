@@ -40,21 +40,30 @@ class ClientView extends PureComponent {
   }
   handleRefreshDom = () => {
     this.setState({ domStatus: 'Loading...' });
-    this.postDom().then(() => {
-      setTimeout(() => {
-        this.fetchDom()
-          .then(() => {
-            this.setState({
-              domStatus: 'Success'
-            });
-          })
-          .catch(() => {
-            this.setState({
-              domStatus: 'Failed fetch dom'
-            });
-          });
-      }, 2000);
-    });
+    this.postDom()
+      .then(() => {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            this.fetchDom()
+              .then(() => {
+                res();
+              })
+              .catch(() => {
+                rej();
+              });
+          }, 2000);
+        });
+      })
+      .then(() => {
+        this.setState({
+          domStatus: 'Success'
+        });
+      })
+      .catch(() => {
+        this.setState({
+          domStatus: 'Failed fetch dom'
+        });
+      });
   };
   postDom = () => {
     const { match } = this.props;
