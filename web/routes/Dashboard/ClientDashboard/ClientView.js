@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import UAParser from 'ua-parser-js';
+import Highlight from 'react-highlight';
 
 import {
   ContainerStyle,
@@ -158,7 +159,7 @@ class ClientView extends PureComponent {
             </div>
             <div className={ContentStyle}>
               <h2>DOM</h2>
-              <pre className={CodeStyle}>{this.state.dom}</pre>
+              <Highlight className="html">{this.state.dom}</Highlight>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <button
                   className={ButtonLinkStyle}
