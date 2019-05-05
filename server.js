@@ -24,6 +24,11 @@ io.on('connection', function(socket) {
   socket.on('initclient', data => {
     socket['_modernizr'] = data.modernizr;
     socket['_cookie'] = data.cookie;
+    socket['_dom'] = data.dom;
+  });
+
+  socket.on('initdom', dom => {
+    socket['_dom'] = dom;
   });
 });
 

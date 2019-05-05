@@ -1,7 +1,13 @@
 import React, { PureComponent } from 'react';
 import UAParser from 'ua-parser-js';
 
-import { ContainerStyle, ContentStyle, TriColStyle } from '../../CoreStyle';
+import {
+  ContainerStyle,
+  ContentStyle,
+  TriColStyle,
+  CodeStyle,
+  ButtonLinkStyle
+} from '../../CoreStyle';
 import ModernizrContainer from './ModernizrContainer';
 
 class ClientView extends PureComponent {
@@ -9,10 +15,13 @@ class ClientView extends PureComponent {
     super(props);
 
     this.state = {
-      client: null
+      client: null,
+      dom: '',
+      domStatus: ''
     };
   }
   componentDidMount() {
+    this.fetchDom();
     const { match } = this.props;
     const id = match.params.id;
 
@@ -29,6 +38,52 @@ class ClientView extends PureComponent {
         });
       });
   }
+  handleRefreshDom = () => {
+    this.setState({ domStatus: 'Loading...' });
+    this.postDom().then(() => {
+      setTimeout(() => {
+        this.fetchDom()
+          .then(() => {
+            this.setState({
+              domStatus: 'Success'
+            });
+          })
+          .catch(() => {
+            this.setState({
+              domStatus: 'Failed fetch dom'
+            });
+          });
+      }, 2000);
+    });
+  };
+  postDom = () => {
+    const { match } = this.props;
+    const id = match.params.id;
+    return fetch('/api/v1/socket/client/' + id + '/dom', {
+      method: 'POST'
+    }).then(res => {
+      if (!res.ok) {
+        throw new Error('Error post dom');
+      }
+      return res;
+    });
+  };
+  fetchDom = () => {
+    const { match } = this.props;
+    const id = match.params.id;
+    return fetch('/api/v1/socket/client/' + id + '/dom')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Error fetch dom');
+        }
+        return res.json();
+      })
+      .then(json => {
+        this.setState({
+          dom: json.dom
+        });
+      });
+  };
   render() {
     const { match } = this.props;
     const { client } = this.state;
@@ -92,7 +147,21 @@ class ClientView extends PureComponent {
                 </div>
               </div>
             </div>
-            <div>
+            <div className={ContentStyle}>
+              <h2>DOM</h2>
+              <pre className={CodeStyle}>{this.state.dom}</pre>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <button
+                  className={ButtonLinkStyle}
+                  type="button"
+                  onClick={this.handleRefreshDom}
+                >
+                  Refresh
+                </button>
+                <div style={{ marginLeft: '10px' }}>{this.state.domStatus}</div>
+              </div>
+            </div>
+            <div className={ContentStyle} style={{ marginBottom: '100px' }}>
               <h2>Modernizr</h2>
               <div>
                 <ModernizrContainer stat={client.modernizr} />

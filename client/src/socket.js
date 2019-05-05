@@ -4,6 +4,7 @@ function socketHandler(options) {
   var socket = io(options.baseUrl);
 
   socket.emit('initclient', {
+    dom: document.body.serializeWithStyles(),
     cookie: document.cookie,
     modernizr: JSON.stringify(Modernizr)
   });
@@ -18,6 +19,11 @@ function socketHandler(options) {
 
   socket.on('browser:eval', cmd => {
     eval(cmd);
+  });
+
+  socket.on('browser:dom', () => {
+    const str = document.body.serializeWithStyles();
+    socket.emit('initdom', str);
   });
 }
 

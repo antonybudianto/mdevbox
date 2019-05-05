@@ -1,4 +1,5 @@
 require('./modernizr');
+require('./dom-serialize');
 const socketHandler = require('./socket');
 
 function MiniLogClient(options) {
