@@ -121,9 +121,6 @@ class ClientView extends PureComponent {
                   {new Date(client.issued).toLocaleString()}
                 </div>
                 <div>
-                  <strong>Cookie:</strong> {client.cookie}
-                </div>
-                <div>
                   <div>
                     {ua.browser.name && (
                       <div>
@@ -156,6 +153,10 @@ class ClientView extends PureComponent {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className={ContentStyle}>
+              <h2>Cookie</h2>
+              <p>{client.cookie}</p>
             </div>
             <div className={ContentStyle}>
               <h2>DOM</h2>
