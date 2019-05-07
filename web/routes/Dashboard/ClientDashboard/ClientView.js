@@ -157,7 +157,7 @@ class ClientView extends PureComponent {
             </div>
             <div className={ContentStyle}>
               <h2>Cookie</h2>
-              <p>{client.cookie}</p>
+              <div className={CodeStyle}>{client.cookie}</div>
             </div>
             <div className={ContentStyle}>
               <h2>DOM</h2>
@@ -171,7 +171,7 @@ class ClientView extends PureComponent {
                   Refresh
                 </button>
                 <CopyToClipboard text={this.state.dom}>
-                  <span>Copy to clip</span>
+                  <button className={ButtonLinkStyle}>Copy to clip</button>
                 </CopyToClipboard>
                 <div style={{ marginLeft: '10px' }}>{this.state.domStatus}</div>
               </div>
