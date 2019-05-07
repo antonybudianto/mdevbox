@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import UAParser from 'ua-parser-js';
 import Highlight from 'react-highlight';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import {
   ContainerStyle,
@@ -169,6 +170,9 @@ class ClientView extends PureComponent {
                 >
                   Refresh
                 </button>
+                <CopyToClipboard text={this.state.dom}>
+                  <span>Copy to clip</span>
+                </CopyToClipboard>
                 <div style={{ marginLeft: '10px' }}>{this.state.domStatus}</div>
               </div>
             </div>
